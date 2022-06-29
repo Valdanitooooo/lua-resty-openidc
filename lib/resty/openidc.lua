@@ -303,7 +303,9 @@ local function openidc_combine_uri(uri, params)
   if string.find(uri, "?", 1, true) then
     sep = "&"
   end
-  return uri .. sep .. ngx.encode_args(params)
+  local url = uri .. sep .. ngx.encode_args(params)
+  log(DEBUG, "Redirect URI path is (" .. url .. ")")
+  return url
 end
 
 local function decorate_request(http_request_decorator, req)
